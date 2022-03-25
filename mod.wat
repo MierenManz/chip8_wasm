@@ -20,4 +20,39 @@
   (global $delay_timer (export "delayTimer") (mut i32) (i32.const 0))
   ;; Also known as `st`
   (global $sound_timer (export "soundTimer") (mut i32) (i32.const 0))
+
+  (func $stack_push
+    (export "stackPush")
+    (param $val i32)
+    ;; get ptr
+    global.get $movable_stack_ptr
+    ;; get value
+    local.get $val
+    ;; push to stack
+    i32.store16
+
+    ;; move stack ptr forward by 1
+    global.get $movable_stack_ptr
+    i32.const 1
+    i32.add
+    global.set $movable_stack_ptr
+  )
+
+  (func $stack_pop
+    (export "stackPop")
+    (local $temp i32)
+    (result i32)
+    ;; move pointer back by 1
+    global.get $movable_stack_ptr
+    i32.const -1
+    i32.add
+    ;; Set temp but tee further
+    local.tee $temp
+    ;; Pop from stack
+    i32.load16_u
+
+    ;; Set pointer
+    local.get $temp
+    global.set $movable_stack_ptr
+  )
 )
