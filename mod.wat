@@ -2,7 +2,7 @@
   ;; First 16 bytes are general purpose registries (v_reg)
   ;; The 32 bytes after this are the stack as 16xu16
   ;; The 4kb after this is the ram
-  ;; The 2kb after this is the framebuffer
+  ;; The 2kb after this is the writable frame buffer
   (memory (export "memory") 1)
 
   ;; Constants
