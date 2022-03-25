@@ -11,11 +11,11 @@
 
   ;; Emulator registers
   ;; Also known as `pc`
-  (global $program_counter (export "programCounter" (mut i32) (i32.const 512)))
+  (global $program_counter (export "programCounter") (mut i32) (i32.const 512))
   ;; Also known as `i_reg`
-  (global $movable_ram_ptr (export "movableRamPtr" (mut i32) (i32.const 0)))
+  (global $movable_ram_ptr (export "movableRamPtr") (mut i32) (i32.const 0))
   ;; Also known as `sp`
-  (global $movable_stack_ptr (export "movableStackPtr" (mut i32) (i32.const 0)))
+  (global $movable_stack_ptr (export "movableStackPtr") (mut i32) (i32.const 0))
   ;; Also known as `dt`
   (global $delay_timer (export "delayTimer") (mut i32) (i32.const 0))
   ;; Also known as `st`
@@ -40,8 +40,8 @@
 
   (func $stack_pop
     (export "stackPop")
-    (local $temp i32)
     (result i32)
+    (local $temp i32)
     ;; move pointer back by 1
     global.get $movable_stack_ptr
     i32.const -1
