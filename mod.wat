@@ -13,27 +13,27 @@
   )
 
   ;; Constants
-  (global $stack_base_ptr (export "stackBasePtr") i32 (i32.const 96))
-  (global $ram_base_ptr (export "ramBasePtr") i32 (i32.const 128))
-  (global $frame_buffer_base_ptr (export "frameBufferBasePtr") i32 (i32.const 4224))
+  (global $stack_base_ptr i32 (i32.const 96))
+  (global $ram_base_ptr i32 (i32.const 128))
+  (global $frame_buffer_base_ptr i32 (i32.const 4224))
 
   ;; Emulator registers
   ;; Also known as `pc`
-  (global $program_counter (export "programCounter") (mut i32) (i32.const 512))
+  (global $program_counter (mut i32) (i32.const 512))
   ;; Also known as `i_reg`
-  (global $movable_ram_ptr (export "movableRamPtr") (mut i32) (i32.const 0))
+  (global $movable_ram_ptr (mut i32) (i32.const 0))
   ;; Also known as `sp`
-  (global $movable_stack_ptr (export "movableStackPtr") (mut i32) (i32.const 0))
+  (global $movable_stack_ptr (mut i32) (i32.const 0))
   ;; Also known as `dt`
-  (global $delay_timer (export "delayTimer") (mut i32) (i32.const 0))
+  (global $delay_timer (mut i32) (i32.const 0))
   ;; Also known as `st`
-  (global $sound_timer (export "soundTimer") (mut i32) (i32.const 0))
+  (global $sound_timer (mut i32) (i32.const 0))
 
   ;;
   ;; Utility Functions
   ;;
 
-  (func $fetch_opcode
+(func $fetch_opcode
     (export "fetchOpcode")
     (result i32)
 
@@ -102,7 +102,6 @@
   ;;
 
   (func $stack_push
-    (export "stackPush")
     (param $val i32)
 
     ;; Throw if stack at 32 already
@@ -129,7 +128,6 @@
   )
 
   (func $stack_pop
-    (export "stackPop")
     (result i32)
     (local $temp i32)
 
