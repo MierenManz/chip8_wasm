@@ -1,5 +1,6 @@
 (module
   ;; First 16 bytes are general purpose registries (v registries)
+  ;; The 80b after this is the font
   ;; The 32b after this are the stack as 16xu16
   ;; The 4kb after this is the ram
   ;; The 2kb after this is the writable frame buffer
@@ -7,15 +8,14 @@
 
   ;; Font datasection
   (data
-    (i32.const 48) 
+    (i32.const 16) 
     "\F0\90\90\90\F0\20\60\20\20\70\F0\10\F0\80\F0\F0\10\F0\10\F0\90\90\F0\10\10\F0\80\F0\10\F0\F0\80\F0\90\F0\F0\10\20\40\40\F0\90\F0\90\F0\F0\90\F0\10\F0\F0\90\F0\90\90\E0\90\E0\90\E0\F0\80\80\80\F0\E0\90\90\90\E0\F0\80\F0\80\F0\F0\80\F0\80\80"
   )
 
   ;; Constants
-  (global $stack_base_ptr (export "stackBasePtr") i32 (i32.const 16))
-  (global $ram_base_ptr (export "ramBasePtr") i32 (i32.const 48))
-  (global $frame_buffer_base_ptr (export "frameBufferBasePtr") i32 (i32.const 4144))
-  (global $fontset_size (export "FONTSET_SIZE") i32 (i32.const 80))
+  (global $stack_base_ptr (export "stackBasePtr") i32 (i32.const 96))
+  (global $ram_base_ptr (export "ramBasePtr") i32 (i32.const 128))
+  (global $frame_buffer_base_ptr (export "frameBufferBasePtr") i32 (i32.const 4224))
 
   ;; Emulator registers
   ;; Also known as `pc`
