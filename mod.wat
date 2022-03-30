@@ -29,6 +29,10 @@
   ;; Also known as `st`
   (global $sound_timer (export "soundTimer") (mut i32) (i32.const 0))
 
+  ;;
+  ;; Stack Functionality
+  ;;
+
   (func $stack_push
     (export "stackPush")
     (param $val i32)
