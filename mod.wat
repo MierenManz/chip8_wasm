@@ -33,10 +33,22 @@
   ;; Utility Functions
   ;;
 
-  (func $memory_reset
-    (export "memoryReset")
-    
-    ;; Clear ram
+  (func $reset
+    (export "reset")
+
+    ;; Clear registries
+    i32.const 0
+    i32.const 0
+    i32.const 16
+    memory.fill
+
+    ;; Clear Stack
+    global.get $stack_base_ptr
+    i32.const 0
+    i32.const 32    
+    memory.fill
+
+    ;; Clear Ram
     global.get $ram_base_ptr
     i32.const 0
     i32.const 4096
@@ -47,6 +59,25 @@
     i32.const 16
     global.get $ram_base_ptr
     memory.copy
+
+    ;; Set stack pointer back to base
+    global.get $stack_base_ptr
+    global.set $movable_stack_ptr
+
+    ;; Set ram pointer back to base
+    global.get $ram_base_ptr
+    global.set $movable_ram_ptr
+
+    ;; Set program counter back to 512
+    i32.const 512
+    global.set $program_counter
+    
+    ;; Set delay timer to 0
+    i32.const 0
+    global.set $delay_timer
+    
+    i32.const 0
+    global.set $sound_timer
   )
 
   ;;
