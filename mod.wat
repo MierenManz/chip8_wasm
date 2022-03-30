@@ -33,6 +33,23 @@
   ;; Utility Functions
   ;;
 
+  (func $fetch_opcode
+    (export "fetchOpcode")
+    (result i32)
+
+    ;; Get opcode
+    global.get $program_counter
+    global.get $ram_base_ptr
+    i32.add
+    i32.load16_u
+
+    ;; Increment counter by 2
+    global.get $program_counter
+    i32.const 2
+    i32.add
+    global.set $program_counter
+  )
+
   (func $reset
     (export "reset")
 
@@ -75,7 +92,7 @@
     ;; Set delay timer to 0
     i32.const 0
     global.set $delay_timer
-    
+
     i32.const 0
     global.set $sound_timer
   )
