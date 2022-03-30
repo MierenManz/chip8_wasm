@@ -30,6 +30,26 @@
   (global $sound_timer (export "soundTimer") (mut i32) (i32.const 0))
 
   ;;
+  ;; Utility Functions
+  ;;
+
+  (func $memory_reset
+    (export "memoryReset")
+    
+    ;; Clear ram
+    global.get $ram_base_ptr
+    i32.const 0
+    i32.const 4096
+    memory.fill
+
+    ;; Copy default font back
+    i32.const 80
+    i32.const 16
+    global.get $ram_base_ptr
+    memory.copy
+  )
+
+  ;;
   ;; Stack Functionality
   ;;
 
